@@ -39,7 +39,7 @@ export function watchFlowers(onChange,onState=()=>{}){
   function connect(){
     if(stopped)return;
     clearTimeout(retry);onState('connecting');
-    socket=new WebSocket(`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}/api/wall`);
+    socket=new WebSocket(import.meta.env.VITE_WALL_WS_URL||`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}/api/wall`);
     const current=socket;
     current.onopen=()=>{attempt=0;cursor=null;lastReply=Date.now();sync();};
     current.onmessage=event=>{

@@ -1,0 +1,24 @@
+{
+  "name": "umdw-flower-api",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-11-01",
+  "account_id": "a704ad3aab2c2e488fdad19fe31f0ad8",
+  "workers_dev": true,
+  "vars": {
+    "PUBLIC_ORIGIN": "https://umdesignweekgenerator.netlify.app",
+    "ADMIN_EMAIL": "Guanxer@gmail.com"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "umdw-2026-production",
+      "database_id": "32f9c3d8-a7e5-4e85-a71c-af27f77aade3",
+      "migrations_dir": "drizzle"
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "0 16 * * *"
+    ]
+  }
+}

@@ -17,7 +17,7 @@ async function collect(folder){
 }
 await collect('dist/client');
 await mkdir('dist/server',{recursive:true});
-await bundle({entryPoints:['worker/index.js'],bundle:true,minify:true,format:'esm',platform:'browser',target:'es2022',outfile:'dist/server/index.js',define:{__STATIC_ASSETS__:JSON.stringify(assets)}});
+await bundle({entryPoints:[process.env.UMDW_TARGET==='cloudflare'?'worker/cloudflare.js':'worker/index.js'],bundle:true,minify:true,format:'esm',platform:'browser',target:'es2022',outfile:'dist/server/index.js',define:{__STATIC_ASSETS__:JSON.stringify(assets)}});
 await mkdir('dist/.openai',{recursive:true});
 await cp('.openai/hosting.json','dist/.openai/hosting.json');
 await cp('drizzle','dist/.openai/drizzle',{recursive:true});

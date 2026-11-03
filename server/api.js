@@ -45,7 +45,7 @@ export async function handleApi(request,env) {
   const closed=await enforceRetention(db);
   if(url.pathname==='/api/exhibition/status'&&request.method==='GET')return json({closed,endsAt:EXHIBITION_END,storedFlowers:closed?0:undefined});
   if(url.pathname==='/api/flowers'&&request.method==='POST'&&exhibitionClosed())return json({error:'The exhibition has ended. Collection is closed.'},410);
-  if(request.headers.get('sec-fetch-site')==='cross-site')return json({error:'Use the event website'},403);
+  if(request.headers.get('sec-fetch-site')==='cross-site'&&request.headers.get('origin')!==env.PUBLIC_ORIGIN)return json({error:'Use the event website'},403);
   if(url.pathname.startsWith('/api/admin/')){
     const identity=authorizeAdmin(request,env);if(identity instanceof Response)return identity;
     if(url.pathname==='/api/admin/archive.zip'&&request.method==='GET')return archiveResponse(db,true);

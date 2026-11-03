@@ -4,9 +4,20 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  VITE_WALL_WS_URL = "wss://umdw-flower-api.guanxer.workers.dev/api/wall"
 
-# API routes are intentionally not rewritten to index.html.
-# Backend migration must be configured before accepting public submissions.
+# Database and HTTP API are served by this account's Cloudflare Worker.
+[[redirects]]
+  from = "/api/*"
+  to = "https://umdw-flower-api.guanxer.workers.dev/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin"
+  to = "https://umdw-flower-api.guanxer.workers.dev/admin"
+  status = 302
+  force = true
 [[redirects]]
   from = "/invite"
   to = "/index.html"
@@ -25,9 +36,5 @@
   status = 200
 [[redirects]]
   from = "/archive"
-  to = "/index.html"
-  status = 200
-[[redirects]]
-  from = "/admin"
   to = "/index.html"
   status = 200
