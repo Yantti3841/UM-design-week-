@@ -11,3 +11,8 @@ Admin API fails closed unless Cloudflare Access supplies a verified ctx.access i
 Required Access setup: protect /admin and /api/admin/* on the Worker hostname, permit only the administrator email. Regular participants do not log in.
 
 The exhibition closes at 2026-11-18 00:00 Asia/Shanghai. A daily 16:00 UTC cron enforces retention; requests also enforce it. Prior Sites records are not automatically copied to this new database.
+
+## Backend deployment
+Install dependencies, then run npx wrangler@4 login, npx wrangler@4 d1 migrations apply umdw-2026-production --remote, and npx wrangler@4 deploy. wrangler.jsonc rebuilds the Worker automatically. Confirm the configured account and database IDs before deploying from another account.
+
+Validated: Netlify generator UI submitted a test flower, D1 persisted it, Netlify wall displayed the image, direct WebSocket returned its snapshot. Test record was removed by its exact UUID and name after verification.

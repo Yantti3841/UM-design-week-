@@ -8,7 +8,8 @@
     "dev": "node scripts/dev.mjs",
     "build": "node scripts/build.mjs",
     "preview": "node scripts/preview.mjs",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "build:cloudflare": "node scripts/build-cloudflare.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

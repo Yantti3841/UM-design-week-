@@ -20,5 +20,8 @@
     "crons": [
       "0 16 * * *"
     ]
+  },
+  "build": {
+    "command": "node scripts/build-cloudflare.mjs"
   }
 }
