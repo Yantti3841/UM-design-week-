@@ -1,0 +1,33 @@
+/* The original light interface stays unchanged; ?theme=dark opens the color study. */
+:root[data-theme="dark"]{background:#606060;color:#f4f1ed;--muted:#deded9;--line:#ffffff40;color-scheme:dark}
+html[data-theme="dark"] .identity-panel{background:transparent}
+html[data-theme="dark"] :is(button,a,input,summary):focus-visible{outline-color:#faf1cf}
+html[data-theme="dark"] .language-switch button[aria-pressed="true"]{background:#eeeee6;color:#28382e}
+html[data-theme="dark"] .step-progress i{background:#ffffff30}
+html[data-theme="dark"] .step-progress i.answered{background:#b5c9b9}
+html[data-theme="dark"] .step-progress i.current{background:#f4f1ed}
+html[data-theme="dark"] .wizard-panel .graphic-options img{background:#ffffff12;border-color:#ffffff26}
+html[data-theme="dark"] .wizard-panel .step-card[data-parameter="experience"] .graphic-options img{background:#c9cec5}
+html[data-theme="dark"] .wizard-panel .graphic-options button[aria-pressed="true"] img{background:#ffffff24;border-color:#f4f1ed}
+html[data-theme="dark"] .wizard-panel .step-card[data-parameter="experience"] .graphic-options button[aria-pressed="true"] img{background:#e1e4da}
+html[data-theme="dark"] .wizard-panel .graphic-options button:is([data-pattern="31"],[data-pattern="32"]) img{background:#434b46}
+html[data-theme="dark"] .wizard-panel .clear-layer[aria-pressed="true"]{color:#f4f1ed}
+html[data-theme="dark"] .compact-schemes>button[aria-pressed="true"]{background:#ffffff16;border-color:#d4e0d4}
+html[data-theme="dark"] .wizard-panel .step-navigation button{background:#ffffff09;border-color:#ffffff60;color:#f4f1ed}
+html[data-theme="dark"] .wizard-panel .step-navigation .next-step{background:#d4e0d4;border-color:#d4e0d4;color:#28382e}
+html[data-theme="dark"] .wizard-panel .slider input{background-image:linear-gradient(#b8c8b9,#b8c8b9)}
+html[data-theme="dark"] .wizard-panel .slider input::-webkit-slider-thumb{background:#d4e0d4;border-color:#48534a}
+html[data-theme="dark"] .wizard-panel .slider input::-moz-range-thumb{background:#d4e0d4;border-color:#48534a}
+html[data-theme="dark"] .motion-options button[aria-pressed="true"]{background:#d4e0d4;color:#28382e}
+html[data-theme="dark"] #name{background:#ffffff0a;border-color:#ffffff60}
+html[data-theme="dark"] #name::placeholder{color:#d0d2cd;opacity:1}
+html[data-theme="dark"] .export-menu{background:#484c49;border-color:#929b93}
+html[data-theme="dark"] .export-menu button{background:#ffffff0c}
+html[data-theme="dark"] .notice{background:#d4e0d4;color:#28382e}
+@media(hover:hover){
+ html[data-theme="dark"] .wizard-panel .graphic-options button:hover img{background:#ffffff24}
+ html[data-theme="dark"] .wizard-panel .step-card[data-parameter="experience"] .graphic-options button:hover img{background:#e1e4da}
+ html[data-theme="dark"] .wizard-panel .step-navigation button:not(:disabled):hover{background:#ffffff20;border-color:#d4e0d4}
+ html[data-theme="dark"] .wizard-panel .step-navigation .next-step:not(:disabled):hover{background:#e4ece0}
+ html[data-theme="dark"] .export-menu button:hover{background:#ffffff20}
+}

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="700" height="700" viewBox="176.851 203.55 346.844 346.844">
+<defs>
+<clipPath id="p12-clip_1">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+<clipPath id="p12-clip_2">
+<path transform="matrix(1,0,0,-1,0,700)" d="M279.607 414.688H418.766V484.386H279.607Z"/>
+</clipPath>
+<clipPath id="p12-clip_3">
+<path transform="matrix(1,0,0,-1,0,700)" d="M189.505 281.851H280.492V417.66H189.505Z"/>
+</clipPath>
+<clipPath id="p12-clip_4">
+<path transform="matrix(1,0,0,-1,0,700)" d="M224.465 170.915H350.41V281.301H224.465Z"/>
+</clipPath>
+<clipPath id="p12-clip_5">
+<path transform="matrix(1,0,0,-1,0,700)" d="M350.741 170.928H476.546V281.506H350.741Z"/>
+</clipPath>
+<clipPath id="p12-clip_6">
+<path transform="matrix(1,0,0,-1,0,700)" d="M419.777 281.852H510.989V417.588H419.777Z"/>
+</clipPath>
+<clipPath id="p12-clip_7">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+</defs>
+<g>
+<g inkscape:groupmode="layer" inkscape:label="Layer 1">
+<g clip-path="url(#p12-clip_1)">
+<g opacity=".899994">
+<g clip-path="url(#p12-clip_2)">
+<path transform="matrix(1,0,0,-1,418.7657,285.0742)" d="M0 0C-.066 38.428-31.271 69.526-69.698 69.46-108.126 69.395-139.225 38.19-139.159-.238Z" fill="#5638e8"/>
+</g>
+</g>
+<g opacity=".899994">
+<g clip-path="url(#p12-clip_3)">
+<path transform="matrix(1,0,0,-1,280.4919,285.7279)" d="M0 0C-36.567 11.812-75.787-8.255-87.599-44.823-99.411-81.39-79.343-120.609-42.776-132.421Z" fill="#5638e8"/>
+</g>
+</g>
+<g opacity=".899994">
+<g clip-path="url(#p12-clip_4)">
+<path transform="matrix(1,0,0,-1,237.6883,418.699)" d="M0 0C-22.534-31.127-15.568-74.628 15.559-97.162 46.687-119.696 90.188-112.73 112.722-81.603Z" fill="#5638e8"/>
+</g>
+</g>
+<g opacity=".899994">
+<g clip-path="url(#p12-clip_5)">
+<path transform="matrix(1,0,0,-1,350.7407,500.4819)" d="M0 0C22.64-31.05 66.165-37.867 97.215-15.227 128.265 7.413 135.082 50.938 112.442 81.988Z" fill="#5638e8"/>
+</g>
+</g>
+<g opacity=".899994">
+<g clip-path="url(#p12-clip_6)">
+<path transform="matrix(1,0,0,-1,463.0052,418.1477)" d="M0 0C36.527 11.937 56.46 51.225 44.523 87.752 32.586 124.278-6.702 144.212-43.229 132.274Z" fill="#5638e8"/>
+</g>
+</g>
+</g>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="Center of Blossom">
+<g clip-path="url(#p12-clip_7)">
+<path transform="matrix(1,0,0,-1,352.5252,372.3494)" d="M0 0C0-1.258-1.02-2.278-2.278-2.278-3.536-2.278-4.556-1.258-4.556 0-4.556 1.258-3.536 2.278-2.278 2.278-1.02 2.278 0 1.258 0 0" fill="#af0e3c"/>
+</g>
+</g>
+</g>
+</svg>

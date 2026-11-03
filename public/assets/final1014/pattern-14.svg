@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="700" height="700" viewBox="0 0 700 700">
+<defs>
+<clipPath id="final14-clip_1">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+<clipPath id="final14-clip_2">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+<clipPath id="final14-clip_3">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+</defs>
+<g>
+<g>
+</g>
+<g>
+<g clip-path="url(#final14-clip_1)">
+<path transform="matrix(1,0,0,-1,700,350.1115)" d="M0 0C0-193.3-156.7-350-350-350-543.3-350-700-193.3-700 0-700 193.3-543.3 350-350 350-156.7 350 0 193.3 0 0" fill="#eec102"/>
+<g>
+</g>
+<g>
+</g>
+</g>
+</g>
+<g>
+<g clip-path="url(#final14-clip_2)">
+</g>
+<g clip-path="url(#final14-clip_3)">
+</g>
+</g>
+</g>
+</svg>

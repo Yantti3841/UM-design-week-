@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="700" height="700" viewBox="0 0 700 700">
+<defs>
+<clipPath id="final18-clip_1">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+<clipPath id="final18-clip_2">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+<clipPath id="final18-clip_3">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+</defs>
+<g>
+<g>
+</g>
+<g>
+<g clip-path="url(#final18-clip_1)">
+<path transform="matrix(1,0,0,-1,418.5325,346.5767)" d="M0 0C0-37.976-30.786-68.762-68.762-68.762-106.738-68.762-137.524-37.976-137.524 0-137.524 37.976-106.738 68.762-68.762 68.762-30.786 68.762 0 37.976 0 0" fill="#f7e666"/>
+<path transform="matrix(1,0,0,-1,280.575,415.3291)" d="M0 0C.066-38.428 31.271-69.526 69.698-69.46 108.126-69.395 139.225-38.19 139.159 .238Z" fill="#f7e666"/>
+<path transform="matrix(1,0,0,-1,419.2434,278.7559)" d="M0 0C-.066 38.428-31.271 69.526-69.698 69.46-108.126 69.395-139.225 38.19-139.159-.238Z" fill="#f7e666"/>
+<path transform="matrix(1,0,0,-1,280.6578,277.8032)" d="M0 0C-38.428-.066-69.526-31.271-69.46-69.698-69.395-108.126-38.19-139.225 .238-139.159Z" fill="#f7e666"/>
+<path transform="matrix(1,0,0,-1,420.3059,415.9116)" d="M0 0C38.428 .066 69.526 31.271 69.46 69.698 69.395 108.126 38.19 139.225-.238 139.159Z" fill="#f7e666"/>
+<path transform="matrix(1,0,0,-1,488.6712,277.3001)" d="M0 0C-.623 37.945-31.605 68.483-69.683 68.417L-69.566 0Z" fill="#f7e666"/>
+<path transform="matrix(1,0,0,-1,280.3127,208.8421)" d="M0 0C-37.945-.623-68.483-31.605-68.417-69.684L0-69.566Z" fill="#f7e666"/>
+<path transform="matrix(1,0,0,-1,210.7282,416.458)" d="M0 0C.623-37.945 31.605-68.483 69.684-68.417L69.566 0Z" fill="#f7e666"/>
+<path transform="matrix(1,0,0,-1,419.0867,484.91603)" d="M0 0C37.945 .623 68.483 31.605 68.417 69.683L0 69.566Z" fill="#f7e666"/>
+<g>
+</g>
+<g>
+</g>
+</g>
+</g>
+<g>
+<g clip-path="url(#final18-clip_2)">
+</g>
+<g clip-path="url(#final18-clip_3)">
+</g>
+</g>
+</g>
+</svg>

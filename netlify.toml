@@ -1,0 +1,33 @@
+[build]
+  command = "pnpm exec vite build --config vite.netlify.config.ts --outDir dist/client"
+  publish = "dist/client"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# API routes are intentionally not rewritten to index.html.
+# Backend migration must be configured before accepting public submissions.
+[[redirects]]
+  from = "/invite"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/scan"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/links"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/wall"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/archive"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/admin"
+  to = "/index.html"
+  status = 200

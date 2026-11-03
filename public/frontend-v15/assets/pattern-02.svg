@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="700" height="700" viewBox="-8.75 -8.75 717.5 717.5">
+<defs>
+<clipPath id="p2-clip_1">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 700H700V0H0Z"/>
+</clipPath>
+</defs>
+<g>
+<g inkscape:groupmode="layer" inkscape:label="Layer 1">
+<path transform="matrix(1,0,0,-1,0,700)" d="M0 .844H700V700H0Z" fill="#cef5f5"/>
+<path transform="matrix(1,0,0,-1,0,-.00018310547)" d="M0 0 354.201-698.752 697.064 0Z" fill="#7f1b1c"/>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="Center of Blossom">
+<g clip-path="url(#p2-clip_1)">
+<path transform="matrix(1,0,0,-1,350.2749,-1.7258911)" stroke-width=".974" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#af0e3c" d="M0 0V-702.837"/>
+<path transform="matrix(1,0,0,-1,701.2831,372.3698)" stroke-width=".963" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#af0e3c" d="M0 0H-703.605"/>
+<path transform="matrix(1,0,0,-1,352.5252,372.3494)" d="M0 0C0-1.258-1.02-2.278-2.278-2.278-3.536-2.278-4.556-1.258-4.556 0-4.556 1.258-3.536 2.278-2.278 2.278-1.02 2.278 0 1.258 0 0" fill="#af0e3c"/>
+</g>
+</g>
+</g>
+</svg>
