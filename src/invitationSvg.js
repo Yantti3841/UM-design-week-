@@ -9,9 +9,7 @@ export function invitationQR({dark='#000000',light='#ffffff'}={}){const code=qrc
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 export function invitationSVG(config,assets,lang){
  const t=natureCopy[lang],theme=cardThemes[config.paletteScheme??2];
- const rgb=theme.color.match(/\w\w/g).map(value=>parseInt(value,16));
- const squareBackground='#'+rgb.map(value=>Math.round(theme.ink==='#ffffff'?value+(255-value)*.14:value*.9).toString(16).padStart(2,'0')).join('');
- const flower=renderFlower({...config,motion:'still'},assets,{squareBackground}).replace('width="1200" height="1200"','x="-15" y="-15" width="1110" height="1110"');
+ const flower=renderFlower({...config,motion:'still'},assets).replace('width="1200" height="1200"','x="-15" y="-15" width="1110" height="1110"');
  const name=config.name.trim()||t.someone;
  const nameSize=Math.min(30,Math.floor(900/[...name].reduce((sum,c)=>sum+(/[\u0000-\u00ff]/.test(c)?.57:1),0)));
  const logo=brandArtwork.replace('<svg ',`<svg fill="${theme.ink}" x="70" y="1535" `).replace('width="1005" height="130"','width="940" height="122"').replace(/fill="#[a-fA-F0-9]+"/g,`fill="${theme.ink}"`);

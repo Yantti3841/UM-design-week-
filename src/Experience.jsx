@@ -28,7 +28,7 @@ export default function Experience({assets,invitation=false}){
  current.current=config;
  const t=natureCopy[lang],key=stepKeys[q],theme=config.paletteScheme==null?{color:'#e7e8eb',ink:'#1c2c26'}:cardThemes[config.paletteScheme];
  const coloured=screen==='result',surface=coloured?theme:{color:'#e7e8eb',ink:'#1c2c26'};
- const flower=useMemo(()=>renderFlower(config,assets,{squareFrame:true,answers:screen==='privacy'||screen==='intro'?['peach']:answers}),[config,assets,answers,screen]);
+ const flower=useMemo(()=>renderFlower(config,assets,{answers:screen==='privacy'||screen==='intro'?['peach']:answers}),[config,assets,answers,screen]);
  useEffect(()=>{document.title=invitation?(lang==='zh'?'設計之源・邀請卡':'A Flower, An Invitation'):(lang==='zh'?'設計之源・花生成器':'The Nature of Design · Flower Generator');document.documentElement.lang=lang==='zh'?'zh-Hant':'en';document.body.classList.add('nature-mode');return()=>document.body.classList.remove('nature-mode');},[lang,invitation]);
  useEffect(()=>{const resize=()=>{root.current?.style.setProperty('--nature-height',`${visualViewport?.height||innerHeight}px`);root.current?.style.setProperty('--nature-top',`${visualViewport?.offsetTop||0}px`);};resize();visualViewport?.addEventListener('resize',resize);visualViewport?.addEventListener('scroll',resize);addEventListener('resize',resize);return()=>{visualViewport?.removeEventListener('resize',resize);visualViewport?.removeEventListener('scroll',resize);removeEventListener('resize',resize);};},[]);
  useEffect(()=>{const delay=Date.parse(EXHIBITION_END)-Date.now();if(delay<=0){setClosed(true);return;}const timer=setTimeout(()=>setClosed(true),delay);return()=>clearTimeout(timer);},[]);

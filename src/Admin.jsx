@@ -4,7 +4,7 @@ import './admin.css';
 
 const labels={all:'全部作品',active:'正在上屏',hidden:'已撤下',trash:'回收站'};
 const actions={hide:'从大屏撤下',show:'重新上屏',trash:'移入回收站',restore:'恢复作品'};
-const login='/signin-with-chatgpt?return_to=%2Fadmin',logout='/signout-with-chatgpt?return_to=%2Fadmin';
+const login='/admin/login',logout='/admin/logout';
 async function api(path,options={}){
   const response=await fetch(path,{cache:'no-store',...options});
   const result=await response.json();

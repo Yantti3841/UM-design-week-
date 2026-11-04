@@ -23,5 +23,15 @@
   },
   "build": {
     "command": "node scripts/build-cloudflare.mjs"
-  }
+  },
+  "ratelimits": [
+    {
+      "name": "LOGIN_LIMITER",
+      "namespace_id": "20261104",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
+  ]
 }

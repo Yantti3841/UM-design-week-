@@ -6,7 +6,7 @@ test('forged identity headers never grant administrator access',async()=>{
  const response=await worker.fetch(new Request('https://example.workers.dev/api/admin/session',{headers:{'oai-authenticated-user-id':'forged','oai-authenticated-user-email':'admin@example.com'}}),{ADMIN_EMAIL:'admin@example.com'},{});
  assert.equal(response.status,401);
 });
-test('authenticated Access identity must match the administrator',async()=>{
+test('Access identity alone cannot bypass password login',async()=>{
  const response=await worker.fetch(new Request('https://example.workers.dev/api/admin/session'),{ADMIN_EMAIL:'admin@example.com'},{access:{getIdentity:async()=>({email:'other@example.com'})}});
- assert.equal(response.status,403);
+ assert.equal(response.status,401);
 });
