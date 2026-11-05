@@ -5,6 +5,8 @@ import {defaultConfig,disciplines,approaches,experiences,roles,regions,affiliati
 import {renderFlower} from './flowerSvg';
 import {invitationSVG} from './invitationSvg';
 import {submitFlower} from './collection';
+import {recordInvitationCreation} from './invitationStats';
+import {generatorTitle,invitationTitle} from './shareTitles';
 import {EXHIBITION_END} from './event';
 import {cardThemes,natureCopy} from './natureCopy';
 import './nature.css';
@@ -29,13 +31,13 @@ export default function Experience({assets,invitation=false}){
  const t=natureCopy[lang],key=stepKeys[q],theme=config.paletteScheme==null?{color:'#e7e8eb',ink:'#1c2c26'}:cardThemes[config.paletteScheme];
  const coloured=screen==='result',surface=coloured?theme:{color:'#e7e8eb',ink:'#1c2c26'};
  const flower=useMemo(()=>renderFlower(config,assets,{answers:screen==='privacy'||screen==='intro'?['peach']:answers}),[config,assets,answers,screen]);
- useEffect(()=>{document.title=invitation?(lang==='zh'?'設計之源・邀請卡':'A Flower, An Invitation'):(lang==='zh'?'設計之源・花生成器':'The Nature of Design · Flower Generator');document.documentElement.lang=lang==='zh'?'zh-Hant':'en';document.body.classList.add('nature-mode');return()=>document.body.classList.remove('nature-mode');},[lang,invitation]);
+ useEffect(()=>{document.title=invitation?invitationTitle:generatorTitle;document.documentElement.lang=lang==='zh'?'zh-Hant':'en';document.body.classList.add('nature-mode');return()=>document.body.classList.remove('nature-mode');},[lang,invitation]);
  useEffect(()=>{const resize=()=>{root.current?.style.setProperty('--nature-height',`${visualViewport?.height||innerHeight}px`);root.current?.style.setProperty('--nature-top',`${visualViewport?.offsetTop||0}px`);};resize();visualViewport?.addEventListener('resize',resize);visualViewport?.addEventListener('scroll',resize);addEventListener('resize',resize);return()=>{visualViewport?.removeEventListener('resize',resize);visualViewport?.removeEventListener('scroll',resize);removeEventListener('resize',resize);};},[]);
  useEffect(()=>{const delay=Date.parse(EXHIBITION_END)-Date.now();if(delay<=0){setClosed(true);return;}const timer=setTimeout(()=>setClosed(true),delay);return()=>clearTimeout(timer);},[]);
  useGSAP(()=>{const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;gsap.fromTo('.nature-scene-text',{opacity:0,y:reduced?0:screen==='intro'?28:9},{opacity:1,y:0,duration:reduced?0:screen==='intro'?1.2:.65,delay:reduced?0:.08,ease:'power2.out'});},{scope:root,dependencies:[screen,q,lang],revertOnUpdate:true});
  useEffect(()=>{
   if(screen!=='result'||!invitation)return;let active=true,url;setPoster(null);setFile(null);setImageError(false);
-  pngFromSVG(invitationSVG(config,assets,lang)).then(blob=>{if(!active)return;url=URL.createObjectURL(blob);setPoster(url);setFile(new File([blob],'UMDW-Invitation-Card.png',{type:'image/png'}));}).catch(()=>{if(active)setImageError(true);});
+  pngFromSVG(invitationSVG(config,assets,lang)).then(blob=>{if(!active)return;url=URL.createObjectURL(blob);setPoster(url);setFile(new File([blob],'UMDW-Invitation-Card.png',{type:'image/png'}));recordInvitationCreation(config).catch(()=>{});}).catch(()=>{if(active)setImageError(true);});
   return()=>{active=false;if(url)URL.revokeObjectURL(url);};
  },[screen,config,assets,lang,retry,invitation]);
  function choose(field,value){

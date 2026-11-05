@@ -20,7 +20,7 @@
   force = true
 [[redirects]]
   from = "/invite"
-  to = "/index.html"
+  to = "/invite.html"
   status = 200
 [[redirects]]
   from = "/scan"

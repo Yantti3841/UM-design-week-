@@ -21,3 +21,12 @@ export const collectionState=sqliteTable('collection_state',{
   eventId:text('event_id').primaryKey(),
   revision:integer('revision').notNull().default(0),
 });
+
+export const invitationCreations=sqliteTable('invitation_creations',{
+  creationId:text('creation_id').primaryKey(),
+  visitorId:text('visitor_id').notNull(),
+  eventId:text('event_id').notNull(),
+  consentVersion:text('consent_version').notNull(),
+  createdAt:text('created_at').notNull(),
+  expiresAt:text('expires_at').notNull(),
+},table=>[index('invitation_event_visitor_idx').on(table.eventId,table.visitorId),index('invitation_expiry_idx').on(table.expiresAt)]);

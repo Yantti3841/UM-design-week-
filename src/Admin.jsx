@@ -23,6 +23,7 @@ export default function Admin(){
   const [session,setSession]=useState(null),[gate,setGate]=useState({loading:true,status:0,message:''}),[assets,setAssets]=useState(null);
   const [status,setStatus]=useState('all'),[draft,setDraft]=useState(''),[query,setQuery]=useState(''),[items,setItems]=useState([]),[counts,setCounts]=useState({all:0,active:0,hidden:0,trash:0});
   const [cursor,setCursor]=useState(null),[loading,setLoading]=useState(false),[busy,setBusy]=useState(''),[error,setError]=useState(''),[notice,setNotice]=useState(''),[trash,setTrash]=useState(null),[refresh,setRefresh]=useState(0);
+  const [invitationStats,setInvitationStats]=useState(null);
   const requestId=useRef(0);
   useEffect(()=>{
     const controller=new AbortController();
@@ -38,7 +39,7 @@ export default function Admin(){
     const id=++requestId.current;setLoading(true);setError('');
     const params=new URLSearchParams({status,q:query,...(append&&cursor?{before:String(cursor)}:{})});
     try{
-      const data=await api('/api/admin/flowers?'+params,{signal});if(id!==requestId.current)return;
+      const [data,stats]=await Promise.all([api('/api/admin/flowers?'+params,{signal}),api('/api/admin/invitations/stats',{signal})]);if(id!==requestId.current)return;setInvitationStats(stats);
       setItems(previous=>append?[...previous,...data.flowers.filter(item=>!previous.some(p=>p.id===item.id))]:data.flowers);setCounts(data.counts);setCursor(data.nextCursor);
     }catch(error){if(error.name!=='AbortError'&&id===requestId.current){setError(error.message);if(error.status===401||error.status===403){setSession(null);setGate({loading:false,status:error.status,message:error.message});}}}
     finally{if(id===requestId.current)setLoading(false);}
@@ -62,6 +63,7 @@ export default function Admin(){
   return <main className="admin-page"><header className="admin-header"><a className="admin-brand" href="/admin">UMDW <span>2026</span><small>設計之源 · 管理平台</small></a><nav aria-label="管理导航"><a href="/wall" target="_blank" rel="noopener">打开大屏</a>{session&&<><a href="/archive" target="_blank" rel="noopener">公开作品库</a><a href={logout}>退出登录</a></>}</nav></header>
     {!session?<section className="admin-gate"><span className="admin-eyebrow">THE NATURE OF DESIGN · ADMIN</span><h1>管理你的花海</h1><p>{gate.loading?'正在检查登录状态…':gate.message||'登录后管理作品和大屏。'}</p>{!gate.loading&&<><a className="admin-primary" href={gate.status===403?logout:login} target="_top">{gate.status===403?'切换管理员账号':'使用管理帳號登入'}</a><p className="admin-small">仅已授权的管理员可以进入。扫码制作花无需登录。</p></>}</section>:<>
       <section className="admin-intro"><div><span className="admin-eyebrow">THE NATURE OF DESIGN · COLLECTION</span><h1>花海管理</h1><p>展陳收集至 2026.11.17。新版許可作品自提交日起保存兩年；舊版作品仍於展陳結束後清理。</p></div><div className="admin-account"><span>{session.email}</span><a className="admin-primary" href="/api/admin/archive.zip">导出全部作品 ZIP</a><small>包含回收站中的 SVG 与配置</small></div></section>
+      <section className="admin-invitation-stats" aria-labelledby="invitation-stats-title"><h2 id="invitation-stats-title">邀請卡製作統計</h2><div><article><span>成功生成邀請卡</span><strong>{invitationStats?.creations??'—'}</strong><small>同一瀏覽器的相同作品不重複計算</small></article><article><span>參與製作的匿名瀏覽器</span><strong>{invitationStats?.visitors??'—'}</strong><small>按瀏覽器去重，並非精確人數</small></article></div><p>自 2026.11.05 更新啟用後開始統計，不包含此前的製作記錄。跨裝置或清除瀏覽器資料可能重複計算；離線製作可能漏計。不儲存邀請卡圖片、署名或 IP 地址。</p></section>
       <div className="admin-stats" aria-label="作品状态">{Object.entries(labels).map(([key,label])=><button key={key} disabled={!!busy} aria-pressed={status===key} onClick={()=>{setStatus(key);setNotice('');}}><span>{label}</span><strong>{counts[key]}</strong><small>{key==='active'?'最近 60 朵在大屏漂浮':key==='hidden'?'保留作品，暂不上屏':key==='trash'?'可恢复，不会永久删除':'所有已收集的花'}</small></button>)}</div>
       <section className="admin-toolbar"><form role="search" onSubmit={event=>{event.preventDefault();setStatus('all');setQuery(draft.trim());setNotice('');setRefresh(value=>value+1);}}><label htmlFor="admin-search">搜索作品</label><input id="admin-search" value={draft} maxLength={80} onChange={event=>setDraft(event.target.value)} placeholder="输入署名或编号，自动搜索全部作品" disabled={!!busy}/><button type="submit" disabled={!!busy}>搜索</button>{query&&<button type="button" onClick={()=>{setDraft('');setQuery('');}}>清除</button>}</form><button className="admin-refresh" disabled={loading||!!busy} onClick={()=>setRefresh(value=>value+1)}>{loading?'正在读取…':'刷新列表'}</button></section>
       <div className="admin-feedback" aria-live="polite">{error?<p role="alert" className="admin-error">{error}</p>:notice?<p>{notice}</p>:<p>{query?`搜索“${query}” · 范围：${labels[status]}`:'撤下只影响大屏；移入回收站也会从公开作品库隐藏。'}</p>}</div>

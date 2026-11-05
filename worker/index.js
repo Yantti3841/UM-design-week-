@@ -10,7 +10,7 @@ export default {
     if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405});
     const pathname=url.pathname.replace(/\/$/,'')||'/';
     if(pathname==='/invite'&&url.searchParams.get('v')==='nature1102')return new Response(null,{status:302,headers:{Location:new URL('/',url).href,'Cache-Control':'no-store'}});
-    const path=['/','/invite','/wall','/archive','/admin','/scan','/links','/frontend-v15'].includes(pathname)?(pathname==='/frontend-v15'?'/frontend-v15/index.html':'/index.html'):url.pathname;
+    const path=['/','/invite','/wall','/archive','/admin','/scan','/links','/frontend-v15'].includes(pathname)?(pathname==='/frontend-v15'?'/frontend-v15/index.html':pathname==='/invite'?'/invite.html':'/index.html'):url.pathname;
     const asset=assets[path];
     if(!asset)return new Response('Not found',{status:404});
     let bytes=asset.binary?Uint8Array.from(atob(asset.data),c=>c.charCodeAt(0)):asset.data;

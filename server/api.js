@@ -2,6 +2,7 @@ import { Zip,ZipPassThrough,strToU8 } from 'fflate';
 import { EVENT,GENERATOR_VERSION,validateRecipe,renderFlower } from './flower.js';
 import { authorizeAdmin,handleAdmin } from './admin.js';
 import {enforceRetention,exhibitionClosed} from './retention.js';
+import {recordInvitation} from './invitations.js';
 import {EXHIBITION_END,DATA_USE_CONSENT_VERSION} from '../src/event.js';
 
 const json=(value,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store'}});
@@ -51,6 +52,7 @@ export async function handleApi(request,env) {
     if(url.pathname==='/api/admin/archive.zip'&&request.method==='GET')return archiveResponse(db,true);
     return handleAdmin(request,env,identity);
   }
+  if(url.pathname==='/api/invitations'&&request.method==='POST')return recordInvitation(request,db);
   if(url.pathname==='/api/wall'&&request.method==='GET')return connectWall(request,db);
   if(url.pathname==='/api/flowers'&&request.method==='POST'){
     if(!request.headers.get('Content-Type')?.startsWith('application/json'))return json({error:'Use application/json'},415);

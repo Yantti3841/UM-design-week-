@@ -15,6 +15,10 @@ export function authorizeAdmin(request,env){
 export async function handleAdmin(request,env,identity){
   const url=new URL(request.url),db=env.DB;
   if(url.pathname==='/api/admin/session'&&request.method==='GET')return json({admin:{email:identity.email}});
+  if(url.pathname==='/api/admin/invitations/stats'&&request.method==='GET'){
+    const stats=await db.prepare('SELECT COUNT(*) AS creations,COUNT(DISTINCT visitor_id) AS visitors FROM invitation_creations WHERE event_id=?').bind(EVENT).first();
+    return json({...stats,trackingSince:'2026-11-05'});
+  }
   if(url.pathname==='/api/admin/flowers'&&request.method==='GET'){
     const status=url.searchParams.get('status')||'all',q=(url.searchParams.get('q')||'').trim(),before=Number(url.searchParams.get('before')||Number.MAX_SAFE_INTEGER);
     if(!['all','active','hidden','trash'].includes(status)||q.length>80||!Number.isSafeInteger(before)||before<1)return json({error:'筛选条件无效。'},400);
