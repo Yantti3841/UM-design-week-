@@ -4,7 +4,7 @@ import { PUBLIC_EVENT_URL } from './event';
 import {brandArtwork} from './brandArtwork';
 import { cardThemes,natureCopy } from './natureCopy';
 const origin=typeof location!=='undefined'&&!['localhost','127.0.0.1'].includes(location.hostname)?location.origin:PUBLIC_EVENT_URL;
-export const invitationURL=`${origin}/`;
+export const invitationURL=`${origin}/invite`;
 export function invitationQR({dark='#000000',light='#ffffff'}={}){const code=qrcode(0,'M');code.addData(invitationURL);code.make();return code.createSvgTag({cellSize:4,margin:16,scalable:true}).replace(/fill="white"/g,`fill="${light}"`).replace(/fill="black"/g,`fill="${dark}"`);}
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 export function invitationSVG(config,assets,lang){
