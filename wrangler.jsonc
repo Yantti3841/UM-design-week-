@@ -5,7 +5,7 @@
   "account_id": "a704ad3aab2c2e488fdad19fe31f0ad8",
   "workers_dev": true,
   "vars": {
-    "PUBLIC_ORIGIN": "https://umdesignweekgenerator.netlify.app",
+    "PUBLIC_ORIGIN": "https://umdw2026.netlify.app",
     "ADMIN_EMAIL": "Guanxer@gmail.com"
   },
   "d1_databases": [

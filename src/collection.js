@@ -1,10 +1,12 @@
+import {DATA_USE_CONSENT_VERSION} from './event.js';
+
 async function request(path,options={}){
   const response=await fetch(path,{cache:'no-store',signal:AbortSignal.timeout(15000),...options});
   if(!response.ok)throw Error(`Collection request failed (${response.status})`);
   return response.json();
 }
 export async function submitFlower(config,id){
-  const result=await request('/api/flowers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({submissionId:id,config})});
+  const result=await request('/api/flowers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({submissionId:id,config,consentVersion:DATA_USE_CONSENT_VERSION})});
   if(!result.saved||!result.flower?.id)throw Error('Flower was not saved');
   return result.flower;
 }

@@ -13,7 +13,9 @@ export const flowers=sqliteTable('flowers',{
   status:text('status').notNull().default('active'),
   restoreStatus:text('restore_status').notNull().default('active'),
   updatedAt:text('updated_at'),
-},table=>[index('flowers_event_id_idx').on(table.eventId,table.id),index('flowers_event_status_idx').on(table.eventId,table.status,table.id)]);
+  consentVersion:text('consent_version'),
+  expiresAt:text('expires_at'),
+},table=>[index('flowers_event_id_idx').on(table.eventId,table.id),index('flowers_event_status_idx').on(table.eventId,table.status,table.id),index('flowers_expiry_idx').on(table.eventId,table.expiresAt)]);
 
 export const collectionState=sqliteTable('collection_state',{
   eventId:text('event_id').primaryKey(),

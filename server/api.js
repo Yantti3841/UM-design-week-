@@ -2,7 +2,7 @@ import { Zip,ZipPassThrough,strToU8 } from 'fflate';
 import { EVENT,GENERATOR_VERSION,validateRecipe,renderFlower } from './flower.js';
 import { authorizeAdmin,handleAdmin } from './admin.js';
 import {enforceRetention,exhibitionClosed} from './retention.js';
-import {EXHIBITION_END} from '../src/event.js';
+import {EXHIBITION_END,DATA_USE_CONSENT_VERSION} from '../src/event.js';
 
 const json=(value,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store'}});
 const publicRecord=row=>({id:row.submission_id,sequence:row.id,number:String(row.id).padStart(5,'0'),name:row.name,config:JSON.parse(row.recipe),createdAt:row.created_at,version:row.generator_version});
@@ -43,7 +43,7 @@ export async function handleApi(request,env) {
   const db=env.DB;
   if(!db)return json({error:'Collection storage is unavailable'},503);
   const closed=await enforceRetention(db);
-  if(url.pathname==='/api/exhibition/status'&&request.method==='GET')return json({closed,endsAt:EXHIBITION_END,storedFlowers:closed?0:undefined});
+  if(url.pathname==='/api/exhibition/status'&&request.method==='GET')return json({closed,endsAt:EXHIBITION_END,storedFlowers:undefined});
   if(url.pathname==='/api/flowers'&&request.method==='POST'&&exhibitionClosed())return json({error:'The exhibition has ended. Collection is closed.'},410);
   if(request.headers.get('sec-fetch-site')==='cross-site'&&request.headers.get('origin')!==env.PUBLIC_ORIGIN)return json({error:'Use the event website'},403);
   if(url.pathname.startsWith('/api/admin/')){
@@ -63,6 +63,7 @@ export async function handleApi(request,env) {
     try{
       body=JSON.parse(raw);
       if(typeof body.submissionId!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(body.submissionId))throw Error('Invalid submission ID');
+      if(body.consentVersion!=null&&body.consentVersion!==DATA_USE_CONSENT_VERSION)throw Error('Please review the current data use permission');
       recipe=validateRecipe(body.config);
     }catch(error){return json({error:error.message},400);}
     const existing=await db.prepare('SELECT id,submission_id,name,recipe,created_at,generator_version FROM flowers WHERE submission_id=? AND event_id=?').bind(body.submissionId,EVENT).first();
@@ -72,7 +73,9 @@ export async function handleApi(request,env) {
     }
     const svg=renderFlower(recipe);
     const projection=renderFlower(recipe,{projection:true,animate:true});
-    await db.prepare('INSERT INTO flowers (submission_id,event_id,name,recipe,svg,projection_svg,generator_version,created_at) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT(submission_id) DO NOTHING').bind(body.submissionId,EVENT,recipe.name,JSON.stringify(recipe),svg,projection,GENERATOR_VERSION,new Date().toISOString()).run();
+    const createdAt=new Date(),consentVersion=body.consentVersion||null;
+    const expiresAt=new Date(createdAt);expiresAt.setUTCFullYear(expiresAt.getUTCFullYear()+2);
+    await db.prepare('INSERT INTO flowers (submission_id,event_id,name,recipe,svg,projection_svg,generator_version,created_at,consent_version,expires_at) VALUES (?,?,?,?,?,?,?,?,?,?) ON CONFLICT(submission_id) DO NOTHING').bind(body.submissionId,EVENT,recipe.name,JSON.stringify(recipe),svg,projection,GENERATOR_VERSION,createdAt.toISOString(),consentVersion,consentVersion?expiresAt.toISOString():null).run();
     const row=await db.prepare('SELECT id,submission_id,name,recipe,created_at,generator_version FROM flowers WHERE submission_id=? AND event_id=?').bind(body.submissionId,EVENT).first();
     if(row.recipe!==JSON.stringify(recipe))return json({error:'This submission ID belongs to another flower'},409);
     return json({flower:publicRecord(row),saved:true},201);
